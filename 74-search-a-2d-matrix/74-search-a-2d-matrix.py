@@ -8,10 +8,8 @@ class Solution:
                 break
                 
         l,r = 0, len(matrix[0])-1
-        #print(l,r)
         while(l<=r):
             mid = (l+r)//2
-            print(matrix[rownum][mid])
             if(matrix[rownum][mid] ==  target):
                 return True
             elif (matrix[rownum][mid] <  target):
