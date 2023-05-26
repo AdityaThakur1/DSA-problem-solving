@@ -1,18 +1,27 @@
-class Solution:
-    def isanagram(self, q1, q2):
-        return sorted(q1) == sorted(q2)
-    
+class Solution:    
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        l1 = len(s1)
-        l2 = len(s2)
+        l, r = 0, len(s1)
         
-        l= 0
-        r = l1
+        hm = [0]*26
+        hm2 = [0]*26
         
-        while(r <= l2):
-            if self.isanagram(s1, s2[l:r]):
-                return True
+        for c in s1:
+            hm[ord(c) - ord('a')] += 1
+            
+        while(r<=len(s2)):
+            if l == 0:
+                for c in s2[l:r]:
+                    hm2[ord(c) - ord('a')] += 1
+                if hm == hm2:
+                    return True
             else:
-                l, r = l+1, r+1
+                hm2[ord(s2[l-1])- ord('a')] -= 1
+                hm2[ord(s2[r-1])- ord('a')] += 1
+                
+                if hm == hm2:
+                    return True
+            l+=1
+            r+=1
         
         return False
+            
