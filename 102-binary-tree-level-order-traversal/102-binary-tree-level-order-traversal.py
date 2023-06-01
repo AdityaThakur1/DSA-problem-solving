@@ -9,6 +9,7 @@ class Solution:
         if not root:
             return []
         
+        """
         deq = collections.deque()
         deq.append((root,0))
         
@@ -26,5 +27,24 @@ class Solution:
                 deq.append((node.left, lv+1))
             if node.right:
                 deq.append((node.right, lv+1))
+            
+        return result"""
+
+        deq = collections.deque([root])
+        result = []
+        
+        while(deq):
+            val = []
+            
+            for i in range(len(deq)):
+                node = deq.popleft()
+                val.append(node.val)
+                
+                if node.left:
+                    deq.append(node.left)
+                if node.right:
+                    deq.append(node.right)
+                
+            result.append(val)
             
         return result
